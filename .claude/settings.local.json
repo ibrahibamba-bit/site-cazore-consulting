@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(cp \"/Users/ibrahimabamba/.claude/projects/-Users-ibrahimabamba-Documents-2026-Claude-Code-jarvis-starter-kit/e03c72e3-f4c0-4206-b7ca-2248680f05cb/tool-results/webfetch-1779704488458-8fawr6.bin\" /tmp/cazore.gz)",
+      "Bash(gunzip -f /tmp/cazore.gz)",
+      "Read(//tmp/**)",
+      "Bash(tar *)"
+    ]
+  }
+}
