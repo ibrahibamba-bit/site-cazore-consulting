@@ -1,0 +1,1404 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cazore Consulting — Automatisation no-code & IA pour dirigeants de PME</title>
+<meta name="description" content="Nous aidons les dirigeants de PME à automatiser leurs processus métier grâce à l'IA et au no-code. Diagnostic, déploiement, suivi — sans recruter d'équipe technique." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #f5f0ea;
+    --bg-2: #ede5d8;
+    --bg-3: #e2d8c5;
+    --ink: #1c1814;
+    --ink-2: #4a4339;
+    --ink-3: #7a7264;
+    --line: #ddd2bd;
+    --line-2: #c8bba2;
+    --accent: #c45e30;
+    --accent-2: #e88a5a;
+    --accent-soft: #f4dac6;
+    --ok: #2f6b3c;
+
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --radius-sm: 12px;
+    --radius: 20px;
+    --radius-lg: 28px;
+    --pill: 999px;
+
+    --shadow-sm: 0 1px 0 rgba(28,24,20,0.04), 0 1px 2px rgba(28,24,20,0.04);
+    --shadow: 0 1px 0 rgba(28,24,20,0.04), 0 10px 28px -14px rgba(28,24,20,0.20);
+    --shadow-lg: 0 1px 0 rgba(28,24,20,0.04), 0 30px 60px -28px rgba(28,24,20,0.32);
+
+    --pad-x: clamp(20px, 4vw, 56px);
+    --section-y: clamp(76px, 9vw, 130px);
+    --maxw: 1240px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad-x); }
+  .section { padding: var(--section-y) 0; }
+  .eyebrow {
+    font-family: var(--sans);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px; height: 1px; background: var(--accent);
+  }
+
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; color: var(--ink); margin: 0; line-height: 1.04; }
+  h1 { font-size: clamp(46px, 6vw, 88px); }
+  h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1.06; }
+  h3 { font-size: clamp(22px, 2vw, 28px); font-family: var(--sans); font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
+  h4 { font-size: 19px; font-family: var(--sans); font-weight: 600; letter-spacing: -0.005em; }
+  p { margin: 0; color: var(--ink-2); }
+  .lede { font-size: clamp(18px, 1.35vw, 20px); color: var(--ink-2); max-width: 58ch; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 26px;
+    border-radius: var(--pill);
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform .15s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+    will-change: transform;
+    min-height: 52px;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05), 0 12px 28px -10px rgba(196,94,48,0.55);
+  }
+  .btn-primary:hover { background: #ab4d23; }
+  .btn-ghost {
+    background: transparent; color: var(--ink); padding: 14px 18px;
+  }
+  .btn-ghost:hover { color: var(--accent); }
+  .btn-outline {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--line-2);
+    padding: 15px 24px;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn-lg { padding: 20px 32px; font-size: 17px; min-height: 60px; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklab, var(--bg) 86%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .nav.is-scrolled { border-bottom-color: var(--line); }
+  .nav-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0;
+    gap: 24px;
+  }
+  .brand { display: inline-flex; align-items: center; }
+  .brand-logo { height: 52px; width: auto; display: block; }
+
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a {
+    padding: 10px 16px; border-radius: var(--pill);
+    font-size: 15px; color: var(--ink-2); font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--bg-2); }
+  .nav-cta { display: flex; gap: 10px; align-items: center; }
+  .nav-burger { display: none; }
+
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .nav-burger {
+      display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center;
+      border-radius: var(--pill); border: 1px solid var(--line-2);
+    }
+    .nav-cta .btn { padding: 12px 18px; min-height: 44px; font-size: 14px; }
+  }
+  @media (max-width: 520px) {
+    .nav-cta .btn span.long { display: none; }
+    .brand-logo { height: 44px; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: clamp(48px, 6vw, 88px); padding-bottom: clamp(56px, 7vw, 100px); position: relative; overflow: hidden; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+  }
+  .hero h1 .accent-word {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub { margin-top: 26px; max-width: 54ch; }
+  .hero-ctas { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .play-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 600;
+    color: var(--ink);
+  }
+  .play-link .dot {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--bg-2); border: 1px solid var(--line-2);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .hero-meta {
+    margin-top: 44px; display: flex; gap: 28px; align-items: center; flex-wrap: wrap;
+    color: var(--ink-3); font-size: 14px;
+  }
+  .hero-meta .sep { width: 1px; height: 22px; background: var(--line-2); }
+  .hero-meta strong { color: var(--ink); }
+
+  /* Hero collage */
+  .hero-collage {
+    position: relative;
+    aspect-ratio: 1 / 0.95;
+  }
+  .hc-tile {
+    position: absolute;
+    border-radius: var(--pill);
+    overflow: hidden;
+    background: var(--bg-3);
+    box-shadow: var(--shadow);
+  }
+  .hc-1 { left: 0; top: 6%; width: 38%; height: 42%; }
+  .hc-2 { right: 0; top: 0; width: 56%; height: 46%;
+    background: linear-gradient(135deg, #e88a5a, #c45e30);
+    color: #fff;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .hc-3 { left: 4%; top: 54%; width: 30%; height: 40%; }
+  .hc-4 { left: 36%; top: 50%; width: 30%; height: 44%; }
+  .hc-5 { right: 0; top: 50%; width: 32%; height: 44%; }
+  .hc-num {
+    font-family: var(--serif);
+    font-size: clamp(48px, 5.4vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .hc-label {
+    font-size: 13px; opacity: .95; margin-top: 10px;
+    text-align: center;
+    max-width: 18ch;
+    line-height: 1.35;
+  }
+  .photo-ph {
+    width: 100%; height: 100%;
+    background:
+      repeating-linear-gradient(45deg, rgba(28,24,20,0.05) 0 1px, transparent 1px 10px),
+      var(--bg-3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-3);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    text-align: center; padding: 8px;
+  }
+
+  .hero-trust {
+    margin-top: clamp(48px, 6vw, 80px);
+    text-align: center;
+  }
+  .hero-trust p {
+    font-family: var(--serif); font-size: clamp(22px, 2vw, 28px); color: var(--ink-2);
+  }
+  .logo-strip {
+    margin-top: 28px;
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    align-items: center;
+  }
+  .logo-pill {
+    height: 64px; border-radius: var(--radius);
+    background: var(--bg-2);
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px;
+    color: var(--ink-2);
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+  }
+  .logo-pill .dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--ink); display: inline-block;
+  }
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-collage { aspect-ratio: 1 / 0.8; max-width: 560px; }
+    .logo-strip { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ---------- Problem / Solution ---------- */
+  .problem-grid {
+    display: grid; grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(28px, 5vw, 80px);
+    align-items: center;
+  }
+  .collage-2 {
+    position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .collage-2 .ph {
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 1 / 1.05;
+  }
+  .collage-2 .ph.tall { aspect-ratio: 1 / 1.35; }
+  .collage-2 .ph.wide { aspect-ratio: 1 / 0.85; }
+  .badge-float {
+    position: absolute;
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: var(--shadow);
+  }
+  .badge-float.tl { top: -18px; right: 16%; }
+  .badge-float.bl { bottom: 18px; left: -10px; }
+  .badge-ico {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .badge-meta { line-height: 1.2; }
+  .badge-meta strong { display: block; font-size: 15px; color: var(--ink); font-weight: 600;}
+  .badge-meta span { font-size: 13px; color: var(--ink-3); }
+
+  .ba-table {
+    margin-top: 36px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .ba-col { padding: 24px; }
+  .ba-col.after { background: var(--ink); color: var(--bg); }
+  .ba-col h4 {
+    font-family: var(--sans);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .ba-col.after h4 { color: rgba(245,240,234,0.6); }
+  .ba-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .ba-col li {
+    font-size: 15px; line-height: 1.45;
+    display: flex; gap: 10px; align-items: flex-start;
+    color: var(--ink-2);
+  }
+  .ba-col.after li { color: rgba(245,240,234,0.85); }
+  .ba-col li .sym {
+    width: 18px; height: 18px; border-radius: 50%; flex: none;
+    background: var(--bg-2); color: var(--ink-3);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .ba-col.after li .sym { background: var(--accent); color: #fff; }
+
+  @media (max-width: 880px) {
+    .problem-grid { grid-template-columns: 1fr; }
+    .ba-table { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Process band ---------- */
+  .process-band {
+    margin-top: clamp(60px, 7vw, 96px);
+    border-top: 1px solid var(--line);
+    padding-top: clamp(48px, 6vw, 80px);
+  }
+  .process-head {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end;
+    margin-bottom: 48px;
+  }
+  .process-head h2 { max-width: 18ch; }
+  .process-head p { max-width: 44ch; }
+  .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .step {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 88px; line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .step h3 { margin-top: 22px; font-size: 24px; }
+  .step p { margin-top: 12px; font-size: 16px; }
+  .step .meta {
+    margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--line);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--ink-3);
+  }
+  .step .meta svg { color: var(--accent); }
+  @media (max-width: 880px) {
+    .process-head { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Section header ---------- */
+  .sec-head {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end;
+    margin-bottom: 56px;
+  }
+  .sec-head h2 { max-width: 16ch; }
+  .sec-head p { max-width: 44ch; }
+  .sec-head.center {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+  .sec-head.center h2 { max-width: 22ch; }
+  .sec-head.center p { max-width: 56ch; }
+  @media (max-width: 760px) {
+    .sec-head { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- VSL ---------- */
+  .vsl { background: var(--ink); color: var(--bg); }
+  .vsl .eyebrow { color: var(--accent-2); }
+  .vsl .eyebrow::before { background: var(--accent-2); }
+  .vsl h2 { color: var(--bg); }
+  .vsl-head { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+  .vsl-head p { color: rgba(245,240,234,0.75); margin-top: 22px; }
+  .video-frame {
+    max-width: 1040px; margin: 0 auto;
+    aspect-ratio: 16/9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    background:
+      radial-gradient(120% 70% at 50% 30%, rgba(232,138,90,0.18), transparent 60%),
+      #2a2520;
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-frame::before {
+    content: "";
+    position: absolute; inset: 24px;
+    border-radius: var(--radius);
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 14px);
+  }
+  .play-btn {
+    position: relative;
+    width: clamp(72px, 8vw, 104px); height: clamp(72px, 8vw, 104px);
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 12px rgba(196,94,48,0.18), 0 30px 60px -20px rgba(0,0,0,0.5);
+    transition: transform .2s ease;
+  }
+  .play-btn:hover { transform: scale(1.04); }
+  .video-caption {
+    position: absolute;
+    bottom: 24px; left: 24px; right: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: rgba(245,240,234,0.7); font-size: 13px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .video-caption .tag {
+    padding: 6px 12px; border-radius: var(--pill);
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  }
+  .service {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 38px;
+    display: flex; flex-direction: column; gap: 22px;
+    transition: transform .25s ease, box-shadow .25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .service:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .service .num {
+    font-family: var(--serif); font-size: 22px; color: var(--ink-3);
+  }
+  .service h3 { margin-top: 4px; }
+  .service .benefit {
+    font-family: var(--serif); font-size: 22px; line-height: 1.3;
+    color: var(--ink);
+    font-style: italic;
+    letter-spacing: -0.005em;
+  }
+  .service ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .service li {
+    font-size: 15px; color: var(--ink-2);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .service li::before {
+    content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); margin-top: 9px; flex: none;
+  }
+  .service .tool-row {
+    margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--line);
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .chip {
+    font-size: 13px; padding: 5px 12px;
+    border-radius: var(--pill);
+    background: var(--bg-2);
+    color: var(--ink-2);
+    border: 1px solid var(--line);
+  }
+  .service-1 { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .service-1 h3 { color: var(--bg); }
+  .service-1 .benefit { color: var(--accent-2); }
+  .service-1 .num, .service-1 p, .service-1 li { color: rgba(245,240,234,0.7); }
+  .service-1 li::before { background: var(--accent-2); }
+  .service-1 .chip { background: rgba(255,255,255,0.06); color: rgba(245,240,234,0.85); border-color: rgba(255,255,255,0.1); }
+  .service-1 .tool-row { border-top-color: rgba(255,255,255,0.12); }
+
+  .service-ico {
+    width: 56px; height: 56px; border-radius: 14px;
+    background: var(--accent-soft); color: var(--accent);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .service-1 .service-ico { background: rgba(232,138,90,0.18); color: var(--accent-2); }
+  @media (max-width: 760px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Case studies ---------- */
+  .cases { background: var(--bg-2); }
+  .cases-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .case {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    display: flex; flex-direction: column; gap: 18px;
+    min-height: 360px;
+  }
+  .case .stat {
+    font-family: var(--serif);
+    font-size: clamp(56px, 5.6vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .case .stat em { font-style: italic; color: var(--accent); }
+  .case h3 { font-size: 20px; }
+  .case .who {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: auto; padding-top: 18px;
+    border-top: 1px dashed var(--line);
+  }
+  .case .who .ico {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--bg-2); color: var(--ink-2);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .case .who-meta { display: flex; flex-direction: column; }
+  .case .who-meta strong { font-size: 14px; }
+  .case .who-meta span { font-size: 13px; color: var(--ink-3); }
+  @media (max-width: 880px) {
+    .cases-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Video testimonials ---------- */
+  .vtesti-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .vtesti {
+    aspect-ratio: 3/4;
+    background: var(--bg-3);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    border: 1px dashed var(--line-2);
+    display: flex; align-items: flex-end;
+  }
+  .vtesti::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, rgba(28,24,20,0.04) 0 1px, transparent 1px 12px);
+  }
+  .vtesti-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--bg); color: var(--accent);
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-lg);
+  }
+  .vtesti-caption {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(180deg, transparent, rgba(28,24,20,0.65));
+    color: #fff;
+  }
+  .vtesti-caption strong { display: block; font-size: 16px; font-weight: 600; }
+  .vtesti-caption span { font-size: 13px; opacity: 0.85; margin-top: 2px; display: block; }
+  .vtesti-caption .pending {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: var(--pill);
+    background: rgba(255,255,255,0.18);
+    margin-bottom: 8px;
+  }
+  @media (max-width: 880px) {
+    .vtesti-grid { grid-template-columns: 1fr; }
+    .vtesti { aspect-ratio: 16/10; }
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 5vw, 80px); align-items: start; }
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; text-align: left;
+    padding: 22px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    font-weight: 500; font-size: 17px;
+    color: var(--ink);
+  }
+  .faq-q .ico {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--bg-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .2s ease, transform .25s ease, color .2s ease;
+    flex: none;
+  }
+  .faq-item.open .faq-q .ico { background: var(--accent); color: #fff; transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .faq-a-inner { padding: 0 24px 24px; color: var(--ink-2); font-size: 16px; line-height: 1.6; }
+  .faq-item.open .faq-a { max-height: 360px; }
+  @media (max-width: 880px) { .faq-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Booking ---------- */
+  .booking {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .booking .eyebrow { color: var(--accent-2); }
+  .booking .eyebrow::before { background: var(--accent-2); }
+  .booking h2 { color: var(--bg); }
+  .booking p { color: rgba(245,240,234,0.75); }
+  .booking-grid {
+    display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+  .booking-points { margin-top: 28px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .booking-points li {
+    display: flex; gap: 12px; align-items: flex-start;
+    color: rgba(245,240,234,0.85); font-size: 16px;
+  }
+  .booking-points .tick {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex: none; margin-top: 1px;
+  }
+  .booking-cta-row {
+    margin-top: 32px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .booking-cta-row .btn-outline { color: var(--bg); border-color: rgba(255,255,255,0.25); }
+  .booking-cta-row .btn-outline:hover { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+
+  .embed-card {
+    background: var(--bg);
+    color: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+  }
+  .embed-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .embed-head .who { display: flex; align-items: center; gap: 12px; }
+  .who-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 600;
+  }
+  .embed-meta { font-size: 13px; color: var(--ink-3); }
+  .embed-meta strong { display: block; font-size: 15px; color: var(--ink); font-weight: 600; }
+  .embed-slot {
+    background: var(--bg-2);
+    border: 1px dashed var(--line-2);
+    border-radius: var(--radius);
+    padding: 28px;
+    min-height: 360px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 18px;
+    text-align: center;
+  }
+  .embed-slot .label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3);
+    padding: 4px 10px; border-radius: var(--pill); background: var(--bg-3);
+  }
+  .embed-slot p { max-width: 38ch; font-size: 14px; }
+  .calendar-mini {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+    width: 100%; max-width: 320px;
+    margin-top: 4px;
+  }
+  .calendar-mini .day {
+    aspect-ratio: 1; border-radius: 10px;
+    background: var(--bg-3); display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: var(--ink-3);
+  }
+  .calendar-mini .day.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .calendar-mini .day.sel { background: var(--accent); color: #fff; font-weight: 600; }
+  .embed-actions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; justify-content: center; }
+  @media (max-width: 880px) {
+    .booking-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 56px 0 32px;
+  }
+  .foot-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;
+    margin-bottom: 40px;
+  }
+  .foot-col h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); margin-bottom: 14px; font-weight: 600; font-family: var(--sans); }
+  .foot-col a { display: block; padding: 5px 0; color: var(--ink-2); font-size: 15px; }
+  .foot-col a:hover { color: var(--accent); }
+  .foot-tag { color: var(--ink-2); font-size: 15px; max-width: 32ch; margin-top: 14px; }
+  .foot-base {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--ink-3);
+    flex-wrap: wrap; gap: 14px;
+  }
+  .foot-base nav { display: flex; gap: 18px; }
+  .foot-base nav a:hover { color: var(--accent); }
+  @media (max-width: 880px) {
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .foot-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Reveal-on-scroll */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top" aria-label="Cazore Consulting — accueil">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" role="img" aria-label="Cazore Consulting">
+        <g transform="translate(8 10)">
+          <path d="M 69.5 22.15 A 34 34 0 1 0 69.5 77.85" stroke="#c45e30" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="84" cy="50" r="6.5" fill="#c45e30"/>
+        </g>
+        <text x="125" y="68" font-family="Instrument Serif, Times New Roman, serif" font-size="54" fill="#1c1814" letter-spacing="-0.5">Cazore</text>
+        <text x="127" y="95" font-family="DM Sans, system-ui, sans-serif" font-size="13" font-weight="500" fill="#7a7264" letter-spacing="3.2">CONSULTING</text>
+      </svg>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#processus">Processus</a>
+      <a href="#resultats">Résultats</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#rendez-vous">
+        <span class="long">Prendre rendez-vous</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <button class="nav-burger" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow">Cabinet d'automatisation · Paris</span>
+      <h1 style="margin-top:22px;">
+        Nous aidons les dirigeants de PME à automatiser leurs processus métier grâce à l'IA et au <span class="accent-word">no-code.</span>
+      </h1>
+      <p class="hero-sub lede">
+        Grâce à des agents IA et des systèmes sur-mesure, sans recruter d'équipe technique.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="#rendez-vous">
+          Réserver un appel gratuit
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a class="play-link" href="#vsl">
+          <span class="dot">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          Voir la présentation (2 min)
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span><strong>Livraison rapide</strong> · diagnostic offert</span>
+        <span class="sep"></span>
+        <span><strong>100%</strong> · sur-mesure</span>
+        <span class="sep"></span>
+        <span><strong>0 dev</strong> · à recruter</span>
+      </div>
+    </div>
+
+    <div class="hero-collage" aria-hidden="true">
+      <div class="hc-tile hc-1">
+        <img src="photo-ibrahima.jpg" alt="Ibrahima Bamba — Fondateur Cazore Consulting" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+      </div>
+      <div class="hc-tile hc-2">
+        <div class="hc-num">12h</div>
+        <div class="hc-label">économisées chaque semaine, par équipe</div>
+      </div>
+      <div class="hc-tile hc-3">
+        <img src="photo-team-1.jpg" alt="Équipe Cazore Consulting" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="hc-tile hc-4">
+        <img src="photo-team-2.jpg" alt="Atelier automatisation" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="hc-tile hc-5">
+        <img src="photo-team-3.jpg" alt="Session de travail" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-trust">
+    <p>Choisi par des PME, agences et indépendants en France, en Belgique et en Afrique francophone</p>
+    <div class="logo-strip">
+      <div class="logo-pill"><span class="dot"></span> Atelier&nbsp;Nord</div>
+      <div class="logo-pill"><span class="dot"></span> Recrutech</div>
+      <div class="logo-pill"><span class="dot"></span> Immo&nbsp;Lumen</div>
+      <div class="logo-pill"><span class="dot"></span> Batiplus</div>
+      <div class="logo-pill"><span class="dot"></span> Korel&nbsp;Conseil</div>
+      <div class="logo-pill"><span class="dot"></span> Maison&nbsp;Verte</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. PROBLÈME / SOLUTION + PROCESSUS ============ -->
+<section class="section" id="a-propos">
+  <div class="wrap problem-grid">
+    <div class="collage-2 reveal">
+      <div class="ph"><img src="photo-problem-1.jpg" alt="Dirigeant débordé" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="ph tall"><img src="photo-problem-2.jpg" alt="Post-it organisation" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="ph wide" style="grid-column:1 / span 2"><img src="photo-problem-3.jpg" alt="Tableur surchargé" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="badge-float tl">
+        <div class="badge-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="badge-meta">
+          <strong>3 h/jour</strong>
+          <span>perdues en tâches répétitives</span>
+        </div>
+      </div>
+      <div class="badge-float bl">
+        <div class="badge-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        </div>
+        <div class="badge-meta">
+          <strong>+38%</strong>
+          <span>de productivité moyenne</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <span class="eyebrow">Philosophie</span>
+      <h2 style="margin-top:18px;">Avant, vous subissiez.<br/><em style="font-style:italic;color:var(--accent)">Maintenant, vous décidez.</em></h2>
+      <p class="lede" style="margin-top:22px;">
+        Vous passez trois heures par jour sur des relances, des copier-coller, des rapports et des e-mails que l'IA pourrait faire à votre place. Vos équipes aussi. Pendant ce temps, les vraies décisions attendent.
+      </p>
+
+      <div class="ba-table">
+        <div class="ba-col">
+          <h4>Avant Cazore</h4>
+          <ul>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              </span>
+              CV qui s'accumulent, leads qui refroidissent
+            </li>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              </span>
+              Reporting refait à la main chaque semaine
+            </li>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              </span>
+              Outils empilés qui ne se parlent pas
+            </li>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              </span>
+              Envie d'IA, mais aucun point d'entrée clair
+            </li>
+          </ul>
+        </div>
+        <div class="ba-col after">
+          <h4>Avec Cazore</h4>
+          <ul>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Leads qualifiés en continu, sans effort
+            </li>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Rapports automatiques envoyés chaque lundi
+            </li>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Vos outils existants connectés et synchronisés
+            </li>
+            <li>
+              <span class="sym">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Une feuille de route IA claire, par priorités
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Processus en 3 étapes -->
+  <div class="wrap process-band" id="processus">
+    <div class="process-head reveal">
+      <div>
+        <span class="eyebrow">Le processus</span>
+        <h2 style="margin-top:18px;">Trois étapes. <em style="font-style:italic;color:var(--accent)">Zéro improvisation.</em></h2>
+      </div>
+      <p class="lede">Un cadre simple et éprouvé, conçu pour que vous voyiez la valeur livrée avant même la fin de la première semaine.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Diagnostic</h3>
+        <p>Nous analysons vos processus actuels et nous identifions ce qui peut être automatisé. Vous repartez avec un plan d'action chiffré, même si nous ne travaillons pas ensemble.</p>
+        <div class="meta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          60 min · offert
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3>Déploiement</h3>
+        <p>Nous concevons et nous installons les automatisations sur-mesure. Vous validez chaque livraison avant la mise en production. Toute la documentation est livrée en français, accessible à vos équipes.</p>
+        <div class="meta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg>
+          Livrables validés en continu
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3>Suivi</h3>
+        <p>Nous formons vos équipes et nous nous assurons que tout fonctionne dans la durée. Support inclus, ajustements et mesures du ROI. Nous ne disparaissons pas une fois la facture envoyée.</p>
+        <div class="meta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          30 jours · support inclus
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 4. SERVICES ============ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Nos offres</span>
+        <h2 style="margin-top:18px;">Quatre façons de<br/><em style="font-style:italic;color:var(--accent)">reprendre du temps.</em></h2>
+      </div>
+      <p class="lede">
+        Chaque mission part d'un problème concret de votre quotidien — et se termine par une automatisation que vos équipes utilisent, sans formation longue ni dépendance technique.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service service-1 reveal">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="service-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+          </div>
+          <span class="num">01</span>
+        </div>
+        <h3>Automatisation des processus métier</h3>
+        <p class="benefit">Reprenez jusqu'à 3 heures par jour sur les tâches qui ne demandent plus aucune réflexion.</p>
+        <ul>
+          <li>Recrutement, leads, relation client, reporting connectés bout-en-bout</li>
+          <li>Vos outils existants synchronisés, plus de copier-coller</li>
+          <li>Tableaux de bord temps réel pour piloter sans Excel</li>
+        </ul>
+        <div class="tool-row">
+          <span class="chip">Make</span>
+          <span class="chip">n8n</span>
+          <span class="chip">Airtable</span>
+          <span class="chip">Brevo</span>
+          <span class="chip">Zapier</span>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="service-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="10" r="1.5"/><circle cx="15" cy="10" r="1.5"/><path d="M9 16c1 .8 2 1 3 1s2-.2 3-1"/></svg>
+          </div>
+          <span class="num">02</span>
+        </div>
+        <h3>Implémentation de l'IA dans l'entreprise</h3>
+        <p class="benefit">Multipliez votre capacité commerciale sans embaucher.</p>
+        <ul>
+          <li>Agents IA pour prospecter et qualifier vos leads en continu</li>
+          <li>Service client 1ʳᵉ ligne et rédaction prises en charge</li>
+          <li>Veille sectorielle livrée chaque matin dans votre boîte</li>
+        </ul>
+        <div class="tool-row">
+          <span class="chip">GPT</span>
+          <span class="chip">Claude</span>
+          <span class="chip">Lindy</span>
+          <span class="chip">Voiceflow</span>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="service-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 3 6 3s6-2 6-3v-5"/></svg>
+          </div>
+          <span class="num">03</span>
+        </div>
+        <h3>Formation IA & no-code des équipes</h3>
+        <p class="benefit">Vos équipes deviennent autonomes en quelques jours, pas en quelques mois.</p>
+        <ul>
+          <li>Formats courts : 1/2 journée à 3 jours, présentiel ou distance</li>
+          <li>Cas pratiques sur leurs vrais outils, leurs vrais problèmes</li>
+          <li>Support post-formation pendant 30 jours, sans surcoût</li>
+        </ul>
+        <div class="tool-row">
+          <span class="chip">Sur-mesure</span>
+          <span class="chip">Inter / intra</span>
+          <span class="chip">Mentoring 1:1</span>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="service-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+          </div>
+          <span class="num">04</span>
+        </div>
+        <h3>Accompagnement sectoriel</h3>
+        <p class="benefit">Une expertise déjà déployée dans votre métier — nous parlons votre langue dès la première minute.</p>
+        <ul>
+          <li>Agences immobilières · qualification et suivi des visites</li>
+          <li>Cabinets de recrutement · sourcing et matching IA</li>
+          <li>Bâtiment & rénovation · devis, suivi chantier, relances</li>
+          <li>Cabinets de conseil · production accélérée des livrables</li>
+        </ul>
+        <div class="tool-row">
+          <span class="chip">Diagnostic offert</span>
+          <span class="chip">Forfait sectoriel</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. ÉTUDES DE CAS ============ -->
+<section class="section cases" id="resultats">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Études de cas</span>
+        <h2 style="margin-top:18px;">Des résultats<br/><em style="font-style:italic;color:var(--accent)">mesurés.</em> Pas promis.</h2>
+      </div>
+      <p class="lede">
+        Chiffres relevés directement chez nos clients après mise en production. Disponibles en détail sur demande, avec le contexte complet.
+      </p>
+    </div>
+
+    <div class="cases-grid">
+
+      <article class="case reveal">
+        <div class="stat"><em>87%</em></div>
+        <h3>de temps gagné sur le sourcing</h3>
+        <p>Agents IA de pré-qualification et matching automatique sur la base de critères métier. L'équipe se concentre uniquement sur les entretiens à fort potentiel.</p>
+        <div class="who">
+          <span class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <div class="who-meta">
+            <strong>Cabinet de recrutement</strong>
+            <span>12 personnes · France</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div class="stat">de <em>3h</em><br/>à <em>20min</em></div>
+        <h3>par jour de gestion administrative</h3>
+        <p>Synchronisation CRM, relances locataires automatiques et préparation des dossiers en un clic. Plus aucun double-saisie entre logiciel métier et boîte mail.</p>
+        <div class="who">
+          <span class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+          </span>
+          <div class="who-meta">
+            <strong>Agence immobilière</strong>
+            <span>8 agents · Île-de-France</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div class="stat"><em>−40%</em></div>
+        <h3>de coûts opérationnels</h3>
+        <p>Devis générés en quelques minutes, suivi chantier centralisé, facturation automatique. La direction reprend le contrôle sans recruter un poste administratif supplémentaire.</p>
+        <div class="who">
+          <span class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+          </span>
+          <div class="who-meta">
+            <strong>PME bâtiment</strong>
+            <span>2&nbsp;M€ de CA · Rénovation énergétique</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 7. FAQ ============ -->
+<section class="section" id="faq" style="background:var(--bg-2);">
+  <div class="wrap faq-grid">
+    <div class="reveal">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2 style="margin-top:18px;">Les questions<br/>fréquentes des<br/><em style="font-style:italic;color:var(--accent)">dirigeants.</em></h2>
+      <p style="margin-top:22px; max-width:34ch; font-size:16px;">
+        Une autre question ? Écrivez-nous à <a href="mailto:ibrahima@cazoreconsulting.com" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">ibrahima@cazoreconsulting.com</a> ou réservez un appel directement.
+      </p>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item open">
+        <button class="faq-q" aria-expanded="true">
+          <span>L'automatisation est-elle adaptée à mon type d'entreprise ?</span>
+          <span class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Oui, à condition d'avoir au moins quelques tâches répétitives par jour ou par semaine. Nous travaillons avec des structures de 1 à 80 personnes, dans des secteurs très variés. Si votre activité ne s'y prête pas, nous vous le dirons franchement dès le diagnostic — c'est gratuit, vous n'avez rien à perdre.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Quels résultats concrets puis-je attendre ?</span>
+          <span class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            En moyenne : 30 à 80% de temps gagné sur les tâches automatisées, un retour sur investissement en 4 à 8 semaines, et une capacité commerciale multipliée par 2 à 3 sur les flux de prospection. Chaque mission s'accompagne d'objectifs chiffrés validés avant le démarrage.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Faut-il des compétences techniques dans mon équipe ?</span>
+          <span class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Aucune. Tous nos outils sont no-code : si votre équipe sait utiliser Excel et Outlook, elle saura utiliser ce que nous installons. La formation post-livraison est incluse et nos documentations sont en français, conçues pour des dirigeants et opérationnels — pas pour des développeurs.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Comment se déroule une mission avec Cazore Consulting ?</span>
+          <span class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            En trois temps : <strong>Diagnostic</strong> (60 min, offert) pour cartographier et chiffrer ; <strong>Déploiement</strong> où nous construisons, testons et mettons en production ; <strong>Suivi</strong> sur 30 jours pour former vos équipes et mesurer le ROI. Vous validez chaque étape avant que nous passions à la suivante.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Comment communiquons-nous pendant la mission ?</span>
+          <span class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Un canal direct (Slack, WhatsApp ou e-mail, à votre préférence), un point hebdomadaire en visio de 30 minutes, et un tableau partagé pour suivre l'avancement en temps réel. Pas de tickets, pas d'intermédiaires : vous parlez directement à la personne qui construit vos automatisations.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Proposez-vous une garantie sur vos livrables ?</span>
+          <span class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Oui. Tous les flux livrés sont garantis 30 jours : si une automatisation cesse de fonctionner ou ne produit pas les résultats convenus, nous la retravaillons jusqu'à ce que ce soit le cas, sans surcoût. Vous restez également propriétaire à 100% de tout ce que nous construisons pour vous.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. COMMENT COMMENCER (booking) ============ -->
+<section class="section booking" id="rendez-vous">
+  <div class="wrap booking-grid">
+    <div class="reveal">
+      <span class="eyebrow">Comment commencer</span>
+      <h2 style="margin-top:18px;">Réservez votre appel<br/><em style="font-style:italic;color:var(--accent-2);">découverte.</em></h2>
+      <p class="lede" style="margin-top:22px; color:rgba(245,240,234,0.8);">
+        Réservez un appel découverte gratuit de 30 minutes. Nous analysons ensemble vos processus et nous vous disons exactement ce que nous pouvons automatiser.
+      </p>
+      <ul class="booking-points">
+        <li>
+          <span class="tick">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          30 minutes en visio · entièrement gratuit
+        </li>
+        <li>
+          <span class="tick">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          Plan d'action chiffré envoyé dans les 48&nbsp;h
+        </li>
+        <li>
+          <span class="tick">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          Aucun engagement, aucune relance commerciale
+        </li>
+      </ul>
+      <div class="booking-cta-row">
+        <a class="btn btn-primary btn-lg" href="https://cal.com/cazoreconsulting/appel-decouverte" target="_blank" rel="noopener">
+          Prendre rendez-vous maintenant
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-outline" href="mailto:ibrahima@cazoreconsulting.com">Écrire par e-mail</a>
+      </div>
+    </div>
+
+    <div class="embed-card reveal">
+      <div class="embed-head">
+        <div class="who">
+          <span class="who-avatar" style="padding:0;overflow:hidden;"><img src="photo-ibrahima.jpg" alt="Ibrahima Bamba" style="width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;" /></span>
+          <div class="embed-meta">
+            <strong>Appel découverte · Cazore Consulting</strong>
+            <span>30 min · Visio · Français</span>
+          </div>
+        </div>
+        <div class="embed-meta" style="text-align:right;">
+          <strong style="color:var(--accent);">Gratuit</strong>
+          <span>Sans engagement</span>
+        </div>
+      </div>
+
+      <div id="calendar-embed" style="border-radius:20px;overflow:hidden;">
+        <iframe src="https://cal.com/cazoreconsulting/appel-decouverte?embed=true"
+                width="100%"
+                height="640"
+                frameborder="0"
+                style="border-radius:20px;"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a class="brand" href="#top" aria-label="Cazore Consulting — accueil">
+          <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" role="img" aria-label="Cazore Consulting">
+            <g transform="translate(8 10)">
+              <path d="M 69.5 22.15 A 34 34 0 1 0 69.5 77.85" stroke="#c45e30" stroke-width="9" stroke-linecap="round"/>
+              <circle cx="84" cy="50" r="6.5" fill="#c45e30"/>
+            </g>
+            <text x="125" y="68" font-family="Instrument Serif, Times New Roman, serif" font-size="54" fill="#1c1814" letter-spacing="-0.5">Cazore</text>
+            <text x="127" y="95" font-family="DM Sans, system-ui, sans-serif" font-size="13" font-weight="500" fill="#7a7264" letter-spacing="3.2">CONSULTING</text>
+          </svg>
+        </a>
+        <p class="foot-tag">Cabinet d'automatisation no-code & IA pour PME, TPE et indépendants francophones. Basé à Paris, missions à distance en Europe et Afrique francophone.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="#services">Automatisation</a>
+        <a href="#services">Agents IA</a>
+        <a href="#services">Formation</a>
+        <a href="#services">Sectoriel</a>
+      </div>
+      <div class="foot-col">
+        <h4>Cabinet</h4>
+        <a href="#a-propos">À propos</a>
+        <a href="#processus">Processus</a>
+        <a href="#resultats">Résultats</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:ibrahima@cazoreconsulting.com">ibrahima@cazoreconsulting.com</a>
+        <a href="#rendez-vous">Prendre rendez-vous</a>
+        <a href="https://www.linkedin.com/in/ibrahima-bamba-20425760/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Cazore Consulting · Tous droits réservés</span>
+      <nav>
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">CGV</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  // Reveal on scroll
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
