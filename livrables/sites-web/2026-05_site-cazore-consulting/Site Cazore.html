@@ -125,23 +125,8 @@
     padding: 18px 0;
     gap: 24px;
   }
-  .brand {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-family: var(--serif);
-    font-size: 26px; letter-spacing: -0.01em;
-    line-height: 1;
-  }
-  .brand-mark {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: var(--ink); color: var(--bg);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-family: var(--sans); font-weight: 700; font-size: 16px;
-    letter-spacing: 0;
-    flex: none;
-  }
-  .brand-text { display: inline-flex; flex-direction: column; line-height: 1; }
-  .brand-text strong { font-family: var(--serif); font-size: 24px; font-weight: 400; letter-spacing: -0.01em; }
-  .brand-text span { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-top: 4px; font-weight: 500; }
+  .brand { display: inline-flex; align-items: center; }
+  .brand-logo { height: 52px; width: auto; display: block; }
 
   .nav-links { display: flex; gap: 6px; align-items: center; }
   .nav-links a {
@@ -162,7 +147,7 @@
   }
   @media (max-width: 520px) {
     .nav-cta .btn span.long { display: none; }
-    .brand-text span { display: none; }
+    .brand-logo { height: 44px; }
   }
 
   /* ---------- Hero ---------- */
@@ -764,11 +749,14 @@
 <header class="nav" id="nav">
   <div class="wrap nav-row">
     <a class="brand" href="#top" aria-label="Cazore Consulting — accueil">
-      <span class="brand-mark">C</span>
-      <span class="brand-text">
-        <strong>Cazore Consulting</strong>
-        <span>Automatisation · IA · No-code</span>
-      </span>
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" role="img" aria-label="Cazore Consulting">
+        <g transform="translate(8 10)">
+          <path d="M 69.5 22.15 A 34 34 0 1 0 69.5 77.85" stroke="#c45e30" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="84" cy="50" r="6.5" fill="#c45e30"/>
+        </g>
+        <text x="125" y="68" font-family="Instrument Serif, Times New Roman, serif" font-size="54" fill="#1c1814" letter-spacing="-0.5">Cazore</text>
+        <text x="127" y="95" font-family="DM Sans, system-ui, sans-serif" font-size="13" font-weight="500" fill="#7a7264" letter-spacing="3.2">CONSULTING</text>
+      </svg>
     </a>
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="#services">Services</a>
@@ -997,39 +985,6 @@
   </div>
 </section>
 
-<!-- ============ 3. VIDÉO DE VENTE (VSL) ============ -->
-<section class="section vsl" id="vsl">
-  <div class="wrap">
-    <div class="vsl-head reveal">
-      <span class="eyebrow">Présentation</span>
-      <h2 style="margin-top:20px;">Découvrez comment nos clients ont<br/><em style="font-style:italic;color:var(--accent-2);">transformé leur activité</em> grâce à l'automatisation.</h2>
-      <p class="lede" style="margin-left:auto;margin-right:auto;">
-        Deux minutes pour comprendre notre méthode, nos résultats et ce que ça changerait concrètement pour vous.
-      </p>
-    </div>
-
-    <!--
-      EMPLACEMENT VIDÉO — remplacer le contenu du .video-frame par votre iframe
-      (YouTube, Vimeo, Loom, Wistia, etc.). Exemple :
-
-      <iframe src="https://www.youtube.com/embed/VOTRE_VIDEO_ID"
-              width="100%" height="100%"
-              frameborder="0"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowfullscreen
-              style="position:absolute;inset:0;border-radius:28px;"></iframe>
-    -->
-    <div class="video-frame reveal" id="vsl-frame">
-      <button class="play-btn" aria-label="Lecture vidéo">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-      <div class="video-caption">
-        <span class="tag">Emplacement vidéo · YouTube / Vimeo / Loom</span>
-        <span>≈ 2 min</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ 4. SERVICES ============ -->
 <section class="section" id="services">
@@ -1201,56 +1156,6 @@
   </div>
 </section>
 
-<!-- ============ 6. TÉMOIGNAGES VIDÉO ============ -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow">Témoignages</span>
-      <h2>Ce que disent <em style="font-style:italic;color:var(--accent);">nos clients.</em></h2>
-      <p class="lede">Témoignages vidéo en cours de production. Cliquez pour découvrir leur retour d'expérience complet, dans leurs mots.</p>
-    </div>
-
-    <!--
-      EMPLACEMENTS TÉMOIGNAGES VIDÉO — remplacer chaque .vtesti par :
-      <article class="vtesti">
-        <iframe src="https://player.vimeo.com/video/VOTRE_ID" ... ></iframe>
-        <div class="vtesti-caption"><strong>Nom</strong><span>Poste · Entreprise</span></div>
-      </article>
-    -->
-    <div class="vtesti-grid">
-      <article class="vtesti reveal">
-        <span class="vtesti-play">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </span>
-        <div class="vtesti-caption">
-          <span class="pending">Vidéo à venir</span>
-          <strong>Nom du dirigeant</strong>
-          <span>Fondateur · Cabinet de recrutement</span>
-        </div>
-      </article>
-      <article class="vtesti reveal">
-        <span class="vtesti-play">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </span>
-        <div class="vtesti-caption">
-          <span class="pending">Vidéo à venir</span>
-          <strong>Nom du dirigeant</strong>
-          <span>Directrice · Agence immobilière</span>
-        </div>
-      </article>
-      <article class="vtesti reveal">
-        <span class="vtesti-play">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </span>
-        <div class="vtesti-caption">
-          <span class="pending">Vidéo à venir</span>
-          <strong>Nom du dirigeant</strong>
-          <span>Gérant · PME bâtiment</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 
 <!-- ============ 7. FAQ ============ -->
 <section class="section" id="faq" style="background:var(--bg-2);">
@@ -1381,7 +1286,7 @@
         </li>
       </ul>
       <div class="booking-cta-row">
-        <a class="btn btn-primary btn-lg" href="#calendar-embed">
+        <a class="btn btn-primary btn-lg" href="https://cal.com/cazoreconsulting/appel-decouverte" target="_blank" rel="noopener">
           Prendre rendez-vous maintenant
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
@@ -1404,30 +1309,12 @@
         </div>
       </div>
 
-      <!--
-        ZONE D'EMBED CALENDRIER — remplacer le contenu de .embed-slot par :
-
-        <iframe src="https://calendly.com/votre-lien/30min"
-                width="100%" height="640" frameborder="0"
+      <div id="calendar-embed" style="border-radius:20px;overflow:hidden;">
+        <iframe src="https://cal.com/cazoreconsulting/appel-decouverte?embed=true"
+                width="100%"
+                height="640"
+                frameborder="0"
                 style="border-radius:20px;"></iframe>
-
-        Compatible Calendly, Cal.com et Google Calendar Appointment Schedule.
-      -->
-      <div class="embed-slot" id="calendar-embed">
-        <span class="label">Emplacement calendrier · Calendly / Cal.com</span>
-        <div class="calendar-mini" aria-hidden="true">
-          <div class="day">L</div><div class="day">M</div><div class="day">M</div><div class="day">J</div><div class="day">V</div><div class="day">S</div><div class="day">D</div>
-          <div class="day"></div><div class="day"></div><div class="day on">1</div><div class="day on">2</div><div class="day on">3</div><div class="day">4</div><div class="day">5</div>
-          <div class="day on">6</div><div class="day on">7</div><div class="day sel">8</div><div class="day on">9</div><div class="day on">10</div><div class="day">11</div><div class="day">12</div>
-          <div class="day on">13</div><div class="day on">14</div><div class="day on">15</div><div class="day on">16</div><div class="day on">17</div><div class="day">18</div><div class="day">19</div>
-        </div>
-        <p>L'URL Calendly, Cal.com ou Google Calendar viendra remplacer ce bloc — la mise en page s'adapte automatiquement.</p>
-        <div class="embed-actions">
-          <a class="btn btn-primary" href="#">
-            Choisir un créneau
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
       </div>
     </div>
   </div>
@@ -1440,12 +1327,15 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-col">
-        <a class="brand" href="#top">
-          <span class="brand-mark">C</span>
-          <span class="brand-text">
-            <strong>Cazore Consulting</strong>
-            <span>Automatisation · IA · No-code</span>
-          </span>
+        <a class="brand" href="#top" aria-label="Cazore Consulting — accueil">
+          <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" role="img" aria-label="Cazore Consulting">
+            <g transform="translate(8 10)">
+              <path d="M 69.5 22.15 A 34 34 0 1 0 69.5 77.85" stroke="#c45e30" stroke-width="9" stroke-linecap="round"/>
+              <circle cx="84" cy="50" r="6.5" fill="#c45e30"/>
+            </g>
+            <text x="125" y="68" font-family="Instrument Serif, Times New Roman, serif" font-size="54" fill="#1c1814" letter-spacing="-0.5">Cazore</text>
+            <text x="127" y="95" font-family="DM Sans, system-ui, sans-serif" font-size="13" font-weight="500" fill="#7a7264" letter-spacing="3.2">CONSULTING</text>
+          </svg>
         </a>
         <p class="foot-tag">Cabinet d'automatisation no-code & IA pour PME, TPE et indépendants francophones. Basé à Paris, missions à distance en Europe et Afrique francophone.</p>
       </div>

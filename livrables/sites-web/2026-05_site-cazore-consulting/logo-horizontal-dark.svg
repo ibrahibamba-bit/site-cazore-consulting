@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" role="img" aria-label="Cazore Consulting">
+  <g transform="translate(8 10)">
+    <path d="M 69.5 22.15 A 34 34 0 1 0 69.5 77.85" stroke="#c45e30" stroke-width="9" stroke-linecap="round"></path>
+    <circle cx="84" cy="50" r="6.5" fill="#c45e30"></circle>
+  </g>
+  <text x="125" y="68" font-family="Instrument Serif, Times New Roman, serif" font-size="54" fill="#f5f0ea" letter-spacing="-0.5">Cazore</text>
+  <text x="127" y="95" font-family="DM Sans, system-ui, sans-serif" font-size="13" font-weight="500" fill="#a8a08f" letter-spacing="3.2">CONSULTING</text>
+</svg>
